@@ -1523,7 +1523,13 @@ struct ContentView: View {
     @State var buttomOpacity: CGFloat = 0
     @State var textOpacity: Double = 0
     @State var textOpacity2: Double = 1
-    @State var audioPlayer: AVAudioPlayer?
+    
+    @State var audioPlayerFunny: AVAudioPlayer?
+    @State var audioPlayerSad: AVAudioPlayer?
+
+    @State var audioPlayerAlarm: AVAudioPlayer?
+    @State var audioPlayerKeyboard: AVAudioPlayer?
+    
     var howLongTillButton: [CGFloat] = [0,0,18,18,0,0]
     
     
@@ -1537,6 +1543,13 @@ struct ContentView: View {
             switch screen {
                 
             case 0: ScreenZero()
+                
+                
+                Text("").opacity(0)
+                    .onAppear(){
+                        self.playAudioFunny()
+                        self.pauseAudioSad()
+                    }
                 
                 Button {
                     screen += 1
@@ -1567,11 +1580,6 @@ struct ContentView: View {
                 
                 
             case 1: ScreenOne().offset(x: 0, y: -50).frame(width: 390, height: 700)
-                
-                Text("").opacity(0)
-                    .onAppear(){
-                        self.playAudio()
-                    }
                 
                 Text("Alice was just a regular girl from a regular town in a regular country")
                     .font(.system(size: 24))
@@ -1650,6 +1658,13 @@ struct ContentView: View {
 
             case 2: ScreenTwo().offset(x: 0, y: -70)
                 
+                
+                
+                Text("")
+                .onAppear(){
+                    self.pauseAudioFunny()
+                    self.playAudioSad()
+                }
 
                 
                 Text("She decided to become a developer and followed the white swift")
@@ -1667,7 +1682,8 @@ struct ContentView: View {
                 
                     .opacity(textOpacity2)
                     .animation(.easeOut(duration: 2).delay(6))
-                    .onAppear(){ textOpacity2 = 0 }
+                    .onAppear(){ textOpacity2 = 0
+                    }
                 
                 
                 Text("She jumped into a deep, deep hole, full of structures, syntax, and algorithms")
@@ -1729,6 +1745,11 @@ struct ContentView: View {
                 
                 
             case 3: ScreenThree().offset(x: 0, y: -50)
+                
+                Text("").opacity(0)
+                    .onAppear(){
+                        self.playAudioKeyboard()
+                    }
                     
                 Text("She was spending all her time struggling with Xcode")
                     .font(.system(size: 24))
@@ -1807,11 +1828,16 @@ struct ContentView: View {
                 
                 
             case 4: ScreenFour()
+                    
+                Text("")
+                .onAppear(){
+                    self.pauseAudioSad()
+                    self.pauseAudioKeyboard()
+                    self.playAudioFunny()
+                    self.playAudioAlarm()
+                }
+
                 
-//                Text("").opacity(0)
-//                    .onAppear(){
-//                        self.pauseAudio()
-//                    }
                 
                 Text("We are joking. It was just a nightmare.")
                     .font(.system(size: 24))
@@ -1893,16 +1919,16 @@ struct ContentView: View {
         }.frame(width: 390, height: 800).background(Color.black)
     }
     
-    func playAudio() {
-                
+    func playAudioFunny() {
+        
                 /// the URL of the audio file.
                 /// forResource = name of the file.
                 /// withExtension = extension, usually "mp3"
             if let audioURL = Bundle.main.url(forResource: "bg", withExtension: "mp3") {
                     do {
-                            try self.audioPlayer = AVAudioPlayer(contentsOf: audioURL) /// make the audio player
-                            self.audioPlayer?.numberOfLoops = 0 /// Number of times to loop the audio
-                            self.audioPlayer?.play() /// start playing
+                            try self.audioPlayerFunny = AVAudioPlayer(contentsOf: audioURL) /// make the audio player
+                            self.audioPlayerFunny?.numberOfLoops = 0 /// Number of times to loop the audio
+                            self.audioPlayerFunny?.play() /// start playing
                             
                     } catch {
                             print("Couldn't play audio. Error: \(error)")
@@ -1913,10 +1939,89 @@ struct ContentView: View {
             }
     }
     
-    func pauseAudio() {
+ 
+    
+    
+    func playAudioKeyboard() {
         
-        self.audioPlayer?.pause()
+                /// the URL of the audio file.
+                /// forResource = name of the file.
+                /// withExtension = extension, usually "mp3"
+            if let audioURL = Bundle.main.url(forResource: "Keyboard", withExtension: "mp3") {
+                    do {
+                            try self.audioPlayerKeyboard = AVAudioPlayer(contentsOf: audioURL) /// make the audio player
+                            self.audioPlayerKeyboard?.numberOfLoops = 3 /// Number of times to loop the audio
+                            self.audioPlayerKeyboard?.play() /// start playing
+                            
+                    } catch {
+                            print("Couldn't play audio. Error: \(error)")
+                    }
+                    
+            } else {
+                    print("No audio file found")
+            }
     }
+    
+    func playAudioSad() {
+        
+                /// the URL of the audio file.
+                /// forResource = name of the file.
+                /// withExtension = extension, usually "mp3"
+            if let audioURL = Bundle.main.url(forResource: "Sad", withExtension: "mp3") {
+                    do {
+                            try self.audioPlayerSad = AVAudioPlayer(contentsOf: audioURL) /// make the audio player
+                            self.audioPlayerSad?.numberOfLoops = 0 /// Number of times to loop the audio
+                            self.audioPlayerSad?.play() /// start playing
+                            
+                    } catch {
+                            print("Couldn't play audio. Error: \(error)")
+                    }
+                    
+            } else {
+                    print("No audio file found")
+            }
+    }
+    
+    func playAudioAlarm() {
+        
+                /// the URL of the audio file.
+                /// forResource = name of the file.
+                /// withExtension = extension, usually "mp3"
+            if let audioURL = Bundle.main.url(forResource: "alarm", withExtension: "wav") {
+                    do {
+                            try self.audioPlayerAlarm = AVAudioPlayer(contentsOf: audioURL) /// make the audio player
+                            self.audioPlayerAlarm?.numberOfLoops = 0 /// Number of times to loop the audio
+                            self.audioPlayerAlarm?.play() /// start playing
+                            
+                    } catch {
+                            print("Couldn't play audio. Error: \(error)")
+                    }
+                    
+            } else {
+                    print("No audio file found")
+            }
+    }
+
+    func pauseAudioFunny() {
+        
+        self.audioPlayerFunny?.pause()
+    }
+
+    func pauseAudioSad() {
+        
+        self.audioPlayerSad?.pause()
+    }
+    
+    func pauseAudioAlarm() {
+        
+        self.audioPlayerAlarm?.pause()
+    }
+    
+    func pauseAudioKeyboard() {
+        
+        self.audioPlayerKeyboard?.pause()
+    }
+
 }
 
 
