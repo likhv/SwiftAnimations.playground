@@ -1231,9 +1231,9 @@ struct ScreenFour: View {
                     .offset(x:4)
             
                 
-                Text("OMG! I almost overslept my first day at Apple")
+                Text("Android? Seriosly? WTF?")
                     .foregroundColor(.white)
-                    .font(.system(size: 18))
+                    .font(.system(size: 22))
                     .multilineTextAlignment(.center)
                     .frame(width: 200)
                 
@@ -1599,7 +1599,7 @@ struct ContentView: View {
                     .onAppear(){ textOpacity2 = 0 }
                 
                 
-                Text("She was spending time with friends, having fun, and knowing nothing about Xcode")
+                Text("She was spending time with friends, having fun, and knowing nothing about code")
                     .font(.system(size: 24))
                     .multilineTextAlignment(.center)
                     .lineSpacing(-10)
@@ -1667,7 +1667,7 @@ struct ContentView: View {
                 }
 
                 
-                Text("She decided to become a developer and followed the white swift")
+                Text("She decided to become an Android Developer")
                     .font(.system(size: 24))
                     .multilineTextAlignment(.center)
                     .lineSpacing(-10)
@@ -1751,7 +1751,7 @@ struct ContentView: View {
                         self.playAudioKeyboard()
                     }
                     
-                Text("She was spending all her time struggling with Xcode")
+                Text("She was spending all her time struggling with Android Studio")
                     .font(.system(size: 24))
                     .multilineTextAlignment(.center)
                     .lineSpacing(-10)
@@ -1787,7 +1787,7 @@ struct ContentView: View {
                     .onAppear(){ textOpacity2 = 0 }
             
                 
-                Text("And one day she died right in her computer chair without ever figuring out Xcode...")
+                Text("And one day she died right in her computer chair without ever figuring it out...")
                     .font(.system(size: 24))
                     .multilineTextAlignment(.center)
                     .lineSpacing(-10)
@@ -1875,7 +1875,7 @@ struct ContentView: View {
                     .onAppear(){ textOpacity2 = 0 }
             
                 
-                Text("She is still a regular girl from a regular town enjoing her Lead role at Apple")
+                Text("She is still a regular girl from a regular town enjoing being iOS Developer")
                     .font(.system(size: 24))
                     .multilineTextAlignment(.center)
                     .lineSpacing(-10)
